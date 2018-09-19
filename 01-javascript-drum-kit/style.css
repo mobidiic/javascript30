@@ -1,0 +1,56 @@
+html {
+  font-size: 10px;
+  background: url(https://static1.squarespace.com/static/581fdba92994ca6b3ae708b8/58267a536fd27ce3f021a4c0/5b00111d6d2a734d9ca8ecc7/1526731049607/GRETSCH-BROOKLYN-DRUM-KIT-RED-OYSTER-DRUMAZON_01.jpg) bottom center;
+  background-size: cover;
+  background-color: rgba(0,0,0, 0.2);
+}
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.keys {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  border: .4rem solid #333333;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .07s ease;
+  width: 10rem;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.key:hover{
+  border: .4rem solid #ffc600;
+  box-shadow: 0 8px 10px black;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
+}
