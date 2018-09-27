@@ -87,13 +87,11 @@
     .panel > *:last-child{
       transform: translateY(100%);
     }
-    .open > *:first-child{
+    .open-active > *:first-child{
       transform: translateY(0);
-      font-size: 3rem;
     }
-    .open > *:last-child{
+    .open-active > *:last-child{
       transform: translateY(0);
-      font-size: 3rem;
     }
   </style>
 
@@ -127,46 +125,58 @@
   </div>
 
   <script>
-    let panel1 = document.querySelector('.panel1')
-    panel1.addEventListener('click',function(){
-      if(!this.classList.contains('open')){
-        this.classList.add('open')
-      }else{
-        this.classList.remove('open')
+    // let panel1 = document.querySelector('.panel1')
+    // panel1.addEventListener('click',function(){
+    //   if(!this.classList.contains('open')){
+    //     this.classList.add('open')
+    //   }else{
+    //     this.classList.remove('open')
+    //   }
+    // })
+    // let panel2 = document.querySelector('.panel2')
+    // panel2.addEventListener('click',function(){
+    //   if(!this.classList.contains('open')){
+    //     this.classList.add('open')
+    //   }else{
+    //     this.classList.remove('open')
+    //   }
+    // })
+    // let panel3 = document.querySelector('.panel3')
+    // panel3.addEventListener('click',function(){
+    //   if(!this.classList.contains('open')){
+    //     this.classList.add('open')
+    //   }else{
+    //     this.classList.remove('open')
+    //   }
+    // })
+    // let panel4 = document.querySelector('.panel4')
+    // panel4.addEventListener('click',function(){
+    //   if(!this.classList.contains('open')){
+    //     this.classList.add('open')
+    //   }else{
+    //     this.classList.remove('open')
+    //   }
+    // })
+    // let panel5 = document.querySelector('.panel5')
+    // panel5.addEventListener('click',function(){
+    //   if(!this.classList.contains('open')){
+    //     this.classList.add('open')
+    //   }else{
+    //     this.classList.remove('open')
+    //   }
+    // })
+
+    const panels = document.querySelectorAll('.panel')
+    function toggleOpen(){
+      this.classList.toggle('open')
+    }
+    function toggleActive(e){
+      if(e.propertyName.includes('flex')){
+        this.classList.toggle('open-active')
       }
-    })
-    let panel2 = document.querySelector('.panel2')
-    panel2.addEventListener('click',function(){
-      if(!this.classList.contains('open')){
-        this.classList.add('open')
-      }else{
-        this.classList.remove('open')
-      }
-    })
-    let panel3 = document.querySelector('.panel3')
-    panel3.addEventListener('click',function(){
-      if(!this.classList.contains('open')){
-        this.classList.add('open')
-      }else{
-        this.classList.remove('open')
-      }
-    })
-    let panel4 = document.querySelector('.panel4')
-    panel4.addEventListener('click',function(){
-      if(!this.classList.contains('open')){
-        this.classList.add('open')
-      }else{
-        this.classList.remove('open')
-      }
-    })
-    let panel5 = document.querySelector('.panel5')
-    panel5.addEventListener('click',function(){
-      if(!this.classList.contains('open')){
-        this.classList.add('open')
-      }else{
-        this.classList.remove('open')
-      }
-    })
+    }
+    panels.forEach(pannel=>pannel.addEventListener('click', toggleOpen))
+    panels.forEach(pannel=>pannel.addEventListener('transitionend', toggleActive))
   </script>
 
 
