@@ -26,6 +26,11 @@
     people.map(person => person.age = 2018-person.year)
     console.log(people.filter((person)=>person.age>18))
     console.log(people.some((person)=>person.age>18))
+
+    const isAdult = people.some((person)=>{
+      (new Date()).getFullYear()-person.year >= 19
+    })
+    console.log(isAdult)
     // Array.prototype.every() // is everyone 19 or older?
     console.log(people.every((person)=>person.age>18))
     // Array.prototype.find()
@@ -37,6 +42,16 @@
     console.log(comments.findIndex((comment)=>comment.id==823423))
     // delete the comment with the ID of 823423
     console.log(comments.filter((comment)=>comment.id !== 823423))
+    console.table(comments)
+
+
+    const index = comments.findIndex((comment)=>comment.id==823423)
+    const newComments = [
+      ...comments.slice(0, index),
+      ...comments.slice(index+1)
+    ]
+    console.table(newComments)
+
   </script>
 </body>
 </html>
