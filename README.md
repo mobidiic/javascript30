@@ -108,3 +108,29 @@ string객체의 includes()메소드도 처음 사용하는 것이였다.
 *fetch API는 프로미스를 리턴한다.
 
 *웹API는 컨텐츠가 하드웨어나 데이터저장소에 접근하기 위한 기기전환, 접근 API들의 모음이다.
+
+
+***
+
+
+07. array-cardio-day-2
+
+
+
+이번 과제는 배열의 메소드를 배우는 시간이였다. some(), every()의 메소드는 처음 공부할 때 배우고는 그 이후로 써먹지 않았던 것이였는데, 이번에 다시 상기시켜 줘서 좋았다.
+
+
+그리고 마지막 문제에서 redux의 경우 원본을 유지하면서 새로운 배열은 만드는 방법으로
+
+    const index = comments.findIndex((comment)=>comment.id==823423)
+    const newComments = [
+      ...comments.slice(0, index),
+      ...comments.slice(index+1)
+    ]
+
+이 방식을 사용했는데, 실제로 쓰이고 있는지 궁금하다.
+내 생각에는 filter()를 사용하는 것이 더 효과적일 듯 한데 왜 filter()를 안썼는지...
+
+        console.table(comments.filter((comment)=>comment.id !== 823423))
+
+filter()의 경우도 원본유지가 되기 때문이고, 위의 코드보다 훨씬 간단하다.
