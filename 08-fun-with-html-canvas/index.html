@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+  <style>
+    html, body {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="draw" width="800" height="800"></canvas>
+<script>
+  const cvs = document.getElementById('draw')
+  const ctx = cvs.getContext('2d')
+  cvs.width = window.innerWidth
+  cvs.height = window.innerHeight
+  ctx.strokeStyle = '#BADA55'
+  ctx.lineJoin = 'round'
+  ctx.lineCap = 'round'
+
+  let isDrawing = false
+  let lastX = 0
+  let lastY = 0
+
+  function draw(e){
+    if(!isDrawing) {return}
+    console.log(e)
+    ctx.beginPath()
+    ctx.moveTo(lastX, lastY)
+    ctx.lineTo(e.offsetX, e.offsetY)
+    ctx.stroke()
+  }
+
+  cvs.addEventListener('mousemove', draw)
+  cvs.addEventListener('mousedown', ()=> isDrawing = true)
+  cvs.addEventListener('mouseup', ()=> isDrawing = false)
+  cvs.addEventListener('mouseout', ()=> isDrawing = false)
+  cvs.addEventListener('mousemove', (e)=> {
+    lastX = e.offsetX
+    lastY = e.offsetY
+  })
+
+</script>
+</body>
+</html>
