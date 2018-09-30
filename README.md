@@ -134,3 +134,34 @@ string객체의 includes()메소드도 처음 사용하는 것이였다.
         console.table(comments.filter((comment)=>comment.id !== 823423))
 
 filter()의 경우도 원본유지가 되기 때문이고, 위의 코드보다 훨씬 간단하다.
+
+
+***
+
+08. fun-with-html-Canvas
+
+
+
+이번 문제는 html5의 canvas태그를 통해 마우스로 선을 그리는 것을 코딩했다. canvas는 처음 공부할 때는 그리 중히 여기진 않았는데, 이것저것 혼자 공부하다 보니 몇번 보게 되어서 최근들어 많이 살펴보았다.
+
+
+문제의 솔루션에서는 디스트럭쳐링 구문으로 최근 위치를 이전 마우스의 오프셋 위치로 정하였는데, 이를 draw() 함수 내부에 정의하는 과정에서, 밖의 이벤트리스너의 함수와 중복되면서 그것이 프로퍼티 처리가 되어 오류가 났다.
+
+    [lastX, lastY] = [e.offsetX, e.offsetY]
+
+![08_errorImg](imgs/08_errorImg.png)
+
+따라서 디스트럭쳐링이 아닌 다음과 같이 풀어 쓰는 것이 의도한 결과를 내었다.
+
+    lastX = e.offsetX
+    lastY = e.offsetY
+
+
+또한 내 방식으로는 mouseover이벤트에 처리하여
+
+    cvs.addEventListener('mousemove', (e)=> {
+      lastX = e.offsetX
+      lastY = e.offsetY
+    })
+
+이러한 방식을 사용했는데, 솔루션에서는 mousedown을 사용하여, 한번 클릭했을 때 점이 찍히고 안찍히고의 차이인줄 알았지만, mousedown이였을 때도, 한번 클릭시 점이 찍히지 않았다. 이는 lastX와 lastY가 아직 위의 오프셋으로 초기화되지 않았기 때문이라고 생각한다. //이것이 아니라 moveTo와 lineTo가 동일하여 path가 찍히지 않았던 것이다.
