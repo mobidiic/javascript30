@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+    // Regular
+    console.log('ooops')
+    // Interpolated
+    console.log('ooooooooop %s', 'sorry')
+    // Styled
+    console.log('%cI am ssooooo coooool', 'color: blue;')
+    // warning!
+    console.warn('oooooooooooops')
+    // Error :|
+    console.error('dont do that')
+    // Info
+    console.info('is it not funny fact?')
+    console.info('hey fuuux')
+    // Testing
+    console.assert(1===2, 'only u can saw this message when u failed in condition')
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('test'), 'that was wrong')
+    // clearing
+    console.clear()
+    // Viewing DOM Elements
+    console.log(p)
+    console.dir(p)
+    // Grouping together
+    console.groupCollapsed('alphabet')//디폴트로 닫혀있음
+    console.log('a')
+    console.log('b')
+    console.log('c')
+    console.groupEnd('alphabet')
+
+    dogs.forEach(dogs => {
+        console.group(`${dogs.name}`)//디폴트로 열려있음
+        console.log(`this is ${dogs.name}`)
+        console.log(`${dogs.name} is ${dogs.age} years old`)
+        console.log(`${dogs.name} is ${dogs.age * 8} dog years old`)
+        console.groupEnd(`${dogs.name}`)
+    })
+    // counting
+    console.count('anderson')
+    console.count('anderson')
+    console.count('wes')
+    console.count('wes')
+    console.count('wes')
+    console.count('anderson')
+    console.count('wes')
+    console.count('wes')
+    console.count('anderson')
+
+    // timing
+    console.time('fetching data')
+    fetch('https://api.github.com/users/wesbos')
+        .then(data => data.json())
+        .then(data => {
+            console.timeEnd('fetching data')
+            console.log(data)
+        })
+  </script>
+</body>
+</html>
