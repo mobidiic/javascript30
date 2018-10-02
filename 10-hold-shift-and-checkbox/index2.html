@@ -129,12 +129,17 @@
                                 }
                             }
                         }
-                        this.removeEventListener("click",arguments.callee)
                     })
                 })
             }
         }
     })
+
+    // 지금 여기서 생성해줬던 클릭 이벤트리스너를 초기화시켜줘야 하는데 실패했다.
+    // keyup 이벤트 발생시 초기화하려 했으나, 기존 이벤트에 덮어씌우는 것은 작동하지 않는다.
+    // removeEventListener의 사용은 못했던 것이, map의 인자(i)를 prop으로 받아야 했기 때문에 익명함수로 넣어야 했다.
+    // 따라서 처음 시프트 누른 다음 멀티 체킹은 되었지만, 그것의 초기화가 되지 않아 이후 이벤트들이 다 망가졌다.
+    // 또한 p의 클래스를 사용하여 체크의 효과는 내었지만, 체크박스의 상태는 변하지 못하였다.
 
     document.addEventListener('keyup',(e)=>{
         if(e.keyCode == 16){
