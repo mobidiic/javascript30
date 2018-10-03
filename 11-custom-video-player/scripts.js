@@ -7,6 +7,7 @@ const skipBackward = document.querySelector('button[data-skip="-10"]')
 const currentProgress = document.querySelector('.progress__filled')
 
 console.log(document.getElementsByClassName('player__video viewer'))
+console.log(document.getElementsByClassName('player__slider'))
 
 function clickToPlay(){
     if(video.paused){
@@ -17,7 +18,7 @@ function clickToPlay(){
 }
 
 function volumeSliding(){
-    video.volume = volumeSlider.value 
+    video.volume = volumeSlider.value
 }
 function playbackRating(){
     video.playbackRate = playbackSlider.value
@@ -71,5 +72,11 @@ document.addEventListener('keydown',(e)=>{
     }
     else if(e.keyCode == 37){
         skipToward(-10)
+    }else if(e.keyCode == 38){
+        volumeSlider.stepUp()
+        volumeSliding()
+    }else if(e.keyCode == 40){
+        volumeSlider.stepDown()
+        volumeSliding()
     }
 })
