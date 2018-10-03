@@ -18,10 +18,10 @@ function clickToPlay(){
 }
 
 function volumeSliding(){
-    video.volume = volumeSlider.value
+    video.volume = this.value
 }
 function playbackRating(){
-    video.playbackRate = playbackSlider.value
+    video.playbackRate = this.value
 }
 function skipToward(time){
     if(time > 0){
