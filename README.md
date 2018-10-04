@@ -227,3 +227,19 @@ filter()의 경우도 원본유지가 되기 때문이고, 위의 코드보다 �
 
 
 ***
+
+
+12. key sequence detection
+
+
+이번 문제는 딱히 많은 내용이 없었다. splice를 사용하는 솔루션의 방식 보다, 내 방식이 코드는 한줄 더 길지만, 직관적이고 이해하기 쉬운 듯 하였다. 
+
+    //솔루션
+    pressed.splice(-secretCode.length-1, pressed.length - secretCode.length)
+
+
+    //내방식
+    if(pressed.length == secretCode.length+1){
+        pressed.splice(0,1)
+    }
+
