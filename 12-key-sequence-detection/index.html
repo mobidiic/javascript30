@@ -8,11 +8,20 @@
 <body>
 <script>
     const pressed = []
+    const secretCode = 'cean'
+    const htmlTag = document.getElementsByTagName('html')[0]
     window.addEventListener('keydown', (e)=>{
         pressed.push(e.key)
+        // pressed.splice(-secretCode.length-1, pressed.length - secretCode.length)
+        if(pressed.length == secretCode.length+1){
+            pressed.splice(0,1)
+        }//이게 훨씬 직관적인데..
         console.log(pressed)
         if(pressed.join('') == 'cean'){
-            document.getElementsByTagName('html')[0].style.background='#BADA55'
+            htmlTag.style.backgroundColor='#BADA55'
+            cornify_add()
+        }else{
+            htmlTag.style.backgroundColor='#ffcd40'
         }
     })
 </script>
