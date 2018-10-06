@@ -261,3 +261,33 @@ scrollY 는 윈도우 내경의 위끝부터 스크롤한 위치이며, pageYOff
 프론트엔드에서는 주로 ajax 요청시 너무 많은 데이터를 요청하는 것을 방지하기 위하여 쓴다.
 예를 들면 검색어 자동완성에서 마 키다운시 리퀘스트를 보내게 되면 트래픽이 상당히 늘어날 것이다.
 
+
+
+***
+
+14. javascript reference vs. copy
+
+
+이번 문제는 자바스크립트의 근본적인 이야기였는데, 참조와 복사에 관한 내용이였다.
+어떤 타입의 변수를 만들고, 그 변수를 다른 변수에 지정해 줬을때,
+
+
+number, string, boolean 타입은 복사가 되어서, 지정한 변수를 변경해도 원본 변수의 값은 변하지 않는다.
+
+
+그러나 array와 object 타입은 복사가 아닌 참조가 되어서, 지정한 변수를 변경하면 원본 변수의 값도 변하는 일이 생긴다.
+
+
+불변성을 유지시켜 주기 위해 배열에서는 다음과 같은 방법이 쓰인다.
+    original.slice()
+    [].concat(original)
+    [...original]
+    Array.from(original)
+
+객체에서는 다음과 같은 방법을 쓴다.
+    Object.assign({}, original, {toChange : 3})
+    //이 경우는 1레벨 뎁스밖에 커버하지 못한다. 이를 피하기 위해 JSON 객체를 이용한다.
+    JSON.parse(JSON.stringify(original))
+
+
+***
