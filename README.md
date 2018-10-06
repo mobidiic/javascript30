@@ -279,15 +279,17 @@ number, string, boolean 타입은 복사가 되어서, 지정한 변수를 변�
 
 
 불변성을 유지시켜 주기 위해 배열에서는 다음과 같은 방법이 쓰인다.
+
     original.slice()
     [].concat(original)
     [...original]
     Array.from(original)
 
 객체에서는 다음과 같은 방법을 쓴다.
-    Object.assign({}, original, {toChange : 3})
-    //이 경우는 1레벨 뎁스밖에 커버하지 못한다. 이를 피하기 위해 JSON 객체를 이용한다.
-    JSON.parse(JSON.stringify(original))
+
+     Object.assign({}, original, {toChange : 3})
+     //이 경우는 1레벨 뎁스밖에 커버하지 못한다. 이를 피하기 위해 JSON 객체를 이용한다.
+     JSON.parse(JSON.stringify(original))
 
 
 ***
