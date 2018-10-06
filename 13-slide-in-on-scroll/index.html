@@ -71,6 +71,7 @@
 
 
     function checkSlide(e){
+        console.log(window.pageYOffset)
         imgs.forEach(img => {
             const slideInAt = (window.scrollY + window.innerHeight) - img.height / 2
             const imgBottoms = img.offsetTop + img.height
