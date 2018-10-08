@@ -33,7 +33,7 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = JSON.parse(localStorage.getItem('items')) || [];
+  let items = JSON.parse(localStorage.getItem('items')) || []
   const clearButton = document.getElementById('button-clear')
   const checkButton = document.getElementById('button-check')
   const uncheckButton =document.getElementById('button-uncheck')
@@ -94,6 +94,28 @@
   addItems.addEventListener('submit', addItem)
 //   itemsList.addEventListener('click', checkItem)
   itemsList.addEventListener('click', toggleDone)
+
+  clearButton.addEventListener('click', ()=>{
+    localStorage.removeItem('items')
+    items = []
+    populateList(items, itemsList)
+  })
+
+  checkButton.addEventListener('click',()=>{
+      for(let i=0; i<items.length; i++){
+          if(!items[i].done){
+              items[i].done = !items[i].done
+          }
+      }populateList(items, itemsList)
+  })
+
+  uncheckButton.addEventListener('click',()=>{
+    for(let i=0; i<items.length; i++){
+          if(items[i].done){
+              items[i].done = !items[i].done
+          }
+      }populateList(items, itemsList)
+  })
 
   populateList(items, itemsList)
 
