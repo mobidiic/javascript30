@@ -23,33 +23,79 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <div class="buttons">
+        <span id="button-clear">clear all</span>
+        <span id="button-check">check all</span>
+        <span id="button-uncheck">uncheck all</span>
+    </div>
   </div>
 
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
+  const items = JSON.parse(localStorage.getItem('items')) || [];
+  const clearButton = document.getElementById('button-clear')
+  const checkButton = document.getElementById('button-check')
+  const uncheckButton =document.getElementById('button-uncheck')
 
-  function addItem(e){
-      e.preventDefault()
-      items.push(e.target[0].value)
-      itemsList.innerHTML = _listUpToItem(items)
-  }
 
-  function _listUpToItem(items){
-      return items.map(item=>(
-          `<li><input type="checkbox"><label>${item}</label></li>`
-      )).join('')
-  }
+//   function addItem(e){
+//       e.preventDefault()
+//       items.push(e.target[0].value)
+//       itemsList.innerHTML = _listUpToItem(items)
+//   }
 
-  function checkItem(e){
-      e.target.previousElementSibling.checked = !e.target.previousElementSibling.checked
+    function addItem(e){
+        e.preventDefault()
+        const text = this.querySelector('[name=item]').value
+        const item = {
+            text,
+            done: false,
+        }
+        items.push(item)
+        populateList(items, itemsList)
+        localStorage.setItem('items', JSON.stringify(items))
+        this.reset()
+    }
+
+//   function _listUpToItem(items){
+//       return items.map(item=>(
+//           `<li><input type="checkbox"><label>${item}</label></li>`
+//       )).join('')
+//   }
+
+    function populateList(plates=[], placeList){
+        placeList.innerHTML = plates.map((plate, i) => {
+            console.log(plate)
+            return `
+                <li>
+                    <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''}/>
+                    <label for="item${i}">${plate.text}</label>
+                </li>
+            `
+        }).join('')
+    }
+
+//   function checkItem(e){
+//       e.target.previousElementSibling.checked = !e.target.previousElementSibling.checked
+//   }
+
+  function toggleDone(e){
+      if(!e.target.matches('input')){
+          return
+      }
+      const el = e.target
+      const index = el.dataset.index
+      items[index].done = !items[index].done
+      localStorage.setItem('items', JSON.stringify(items))
+      populateList(items, itemsList)
   }
 
   addItems.addEventListener('submit', addItem)
-  itemsList.addEventListener('click', checkItem)
+//   itemsList.addEventListener('click', checkItem)
+  itemsList.addEventListener('click', toggleDone)
 
-
+  populateList(items, itemsList)
 
 </script>
 

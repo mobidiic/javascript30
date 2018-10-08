@@ -77,3 +77,21 @@ html {
     outline: 0;
     border: 1px solid rgba(0,0,0,0.1);
   }
+
+  .buttons{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+      font-size: 0.8rem;
+  }
+
+  .buttons span{
+      border: 1px solid #BADA55;
+      padding: 6px;
+      cursor: pointer;
+  }
+
+  .buttons span:hover{
+      color: white;
+      background: #BADA55;
+  }
