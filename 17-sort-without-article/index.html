@@ -45,28 +45,39 @@
 <script>
     const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
     const bandsList = document.getElementById('bands')
-    const checkedBands = []
+    // const checkedBands = []
 
-    for(let i=0; i< bands.length; i++){
-        if(bands[i].match(/^The\s/)){
-            checkedBands[i] = bands[i].slice(4,bands[i].length)
-        }
-        else if(bands[i].match(/^An\s/)){
-            checkedBands[i] = bands[i].slice(3,bands[i].length)
-        }
-        else if(bands[i].match(/^A\s/)){
-            checkedBands[i] = bands[i].slice(2,bands[i].length)
-        }else{
-            checkedBands[i] = bands[i]
-        }
+    // for(let i=0; i< bands.length; i++){
+    //     if(bands[i].match(/^The\s/)){
+    //         checkedBands[i] = bands[i].slice(4,bands[i].length)
+    //     }
+    //     else if(bands[i].match(/^An\s/)){
+    //         checkedBands[i] = bands[i].slice(3,bands[i].length)
+    //     }
+    //     else if(bands[i].match(/^A\s/)){
+    //         checkedBands[i] = bands[i].slice(2,bands[i].length)
+    //     }else{
+    //         checkedBands[i] = bands[i]
+    //     }
+    // }
+    // const sortedBands = checkedBands.sort()
+
+    
+
+    function strip(bandName){
+        return bandName.replace(/^(a |an |the )/i, '').trim()
     }
-    const sortedBands = checkedBands.sort()
+    const sortedBands = bands.sort((a,b)=>{
+        return (strip(a) > strip(b) ? 1 : -1)
+    })
+
     console.log(sortedBands)
     bandsList.innerHTML = sortedBands.map((band,i) => {
         return `
             <li class="bands band${i}">${band}</li>
             `
     }).join('')
+
 
 </script>
 
