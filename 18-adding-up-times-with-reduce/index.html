@@ -182,35 +182,51 @@
     </li>
   </ul>
 <script>
-    const videos = document.querySelectorAll('li')
-    let minutes = []
-    let seconds = []
-    videos.forEach(video => minutes.push(video.dataset.time.split(':')[0]))
-    videos.forEach(video => seconds.push(video.dataset.time.split(':')[1]))
-    console.log(minutes, seconds)
-    function cumulatedAdd(a,b){
-        return parseInt(a)+parseInt(b)
-    }
-    let totalMinutes = minutes.reduce(cumulatedAdd, 0)
-    let totalSeconds = seconds.reduce(cumulatedAdd, 0)
-    console.log(totalMinutes, totalSeconds)
-    let totalHours = 0
-    let totalDays = 0
-    if(totalSeconds > 60){
-        totalMinutes += Math.floor(totalSeconds/60)
-        totalSeconds = totalSeconds%60
-    }
-    if(totalMinutes > 60){
-        totalHours += Math.floor(totalMinutes/60)
-        totalMinutes = totalMinutes%60
-    }
-    if(totalHours > 24){
-        totalDays += Math.floor(totalHours/24)
-        totalHours = totalHours%24
-    }
+    // const videos = document.querySelectorAll('li')
+    // let minutes = []
+    // let seconds = []
+    // videos.forEach(video => minutes.push(video.dataset.time.split(':')[0]))
+    // videos.forEach(video => seconds.push(video.dataset.time.split(':')[1]))
+    // console.log(minutes, seconds)
+    // function cumulatedAdd(a,b){
+    //     return parseInt(a)+parseInt(b)
+    // }
+    // let totalMinutes = minutes.reduce(cumulatedAdd, 0)
+    // let totalSeconds = seconds.reduce(cumulatedAdd, 0)
+    // console.log(totalMinutes, totalSeconds)
+    // let totalHours = 0
+    // let totalDays = 0
+    // if(totalSeconds > 60){
+    //     totalMinutes += Math.floor(totalSeconds/60)
+    //     totalSeconds = totalSeconds%60
+    // }
+    // if(totalMinutes > 60){
+    //     totalHours += Math.floor(totalMinutes/60)
+    //     totalMinutes = totalMinutes%60
+    // }
+    // if(totalHours > 24){
+    //     totalDays += Math.floor(totalHours/24)
+    //     totalHours = totalHours%24
+    // }
 
-    const message = `total playtime = ${totalDays==0 ? '' : totalDays+'days, '} ${totalHours==0 ? '' : totalHours+':'}${totalMinutes}:${totalSeconds} `
-    console.log(message)
+    // const message = `total playtime = ${totalDays==0 ? '' : totalDays+'days, '} ${totalHours==0 ? '' : totalHours+':'}${totalMinutes}:${totalSeconds} `
+    // console.log(message)
+
+    const timeNodes = Array.from(document.querySelectorAll('[data-time]'))
+    const seconds = timeNodes
+        .map(node => node.dataset.time)
+        .map(timeCode => {
+            const [ mins, secs ] = timeCode.split(':').map(parseFloat)
+            return (mins*60 + secs)
+        })
+        .reduce((total, sec) => total+sec)
+    console.log(seconds)
+    let secondsLeft = seconds
+    const hours = Math.floor(secondsLeft/3600)
+    secondsLeft = seconds%3600
+    const minutes = Math.floor(secondsLeft/60)
+    secondsLeft = seconds%60
+    console.log(hours, minutes, secondsLeft)
 </script>
 </body>
 </html>
