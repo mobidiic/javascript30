@@ -357,3 +357,25 @@ const [ mins, secs ] = timeCode.split(':').map(parseFloat)
 내 방식의 풀이도 에러가 있지는 않고, 예외처리의 면에서는 더 나은 코드라고 볼 수 있으나, 그 깔끔함은 솔루션에 비할 바 못하다고 생각한다.
 이런 식으로 모던하게 짤 수 있도록 더 노력해야 겠다. es6의 문법을 통해 더 간단하게 표현될 수 있는데, 배웠는데도 불구하고 쓰지 못하는 것은 숙련의 문제이다. 더 공부해야 겠다.
 
+***
+
+
+19. webcam-fun
+
+
+이번 문제는 웹캠을 이용하는 것이였다. 나는 웹 API중 navigator객체의 속성을 통해, 브라우져가 클라이언트의 디바이스에 접근할 수 있다는 것을 처음 알게 되었다. navigator.mediaDevices.getUserMedia() 메소드는 프로미스를 반환하며, MediaStream이라는 객체를 디바이스 미디어 인풋 결과로 받는다. 
+해당 문제의 URL.createObjectURL()은 곳 deprecated될 것이기 때문에, 다음과 같이 써주는 것이 좋다.
+
+```javascript
+try{
+    video.srcObject = localMediaStream
+}catch(e){
+    video.src = window.URL.createObjectURL(localMediaStream)
+}
+```
+
+또한 HTML 태그의 download 어트리뷰트는 처음 사용해 보았으며, insertBefore(some, other.firstChild)를 통해 첫번째 자식엘리먼트로 넣는 방법도 사용해 보았다.
+canplay 이벤트는 비디오나 오디오 태그에서 브라우져가 재생할 준비가 되면 발생하는 이벤트이다.
+
+픽셀의 경우 data로 표현될 때, unit8ClampedArray 의 형태로 받아지며, 배열의 메소드는 사용할 수 없는 유사배열이다. 
+[ rgbargba.... ] 의 순서로 반복되는 형태를 지니고 있다.
