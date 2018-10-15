@@ -387,7 +387,16 @@ canplay 이벤트는 비디오나 오디오 태그에서 브라우져가 재생�
 
 20. speech-detection
 
-지금 도서관이라 못하고, 집가서 해야겠다.
+
+
+이번 문제는 언어 인식에 관한 웹api의 사용이였다. speechRecognition 객체를 사용했다.
+
+```javascript
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+```
+웹킷을 쓰는 파이어폭스와 크롬에서는 뒤의 구문을 써야한다.
+
+생각보다 음성인식을 구현하기에는 내장객체를 활용해서 쉽게 만들었지만, 실제 구현한 결과를 보았을 때, 인식률이 뛰어나지 않았다. 그냥 기본적인 원리를 배운 느낌이였다.
 
 
 
