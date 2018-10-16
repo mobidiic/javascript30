@@ -66,7 +66,7 @@ html {
   }
   
   li.logo {
-    max-width: 0;
+    width: 0;
     overflow: hidden;
     background: white;
     transition: all 0.5s;
@@ -94,7 +94,7 @@ html {
   }
 
  .sticky .logo{
-     max-width: 500px;
+     width: 500px;
      flex: 1;
      transition: all 0.5s;
  }

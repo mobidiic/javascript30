@@ -444,3 +444,23 @@ msg.voice = voices.find(voice => voice.name === this.value.split(' ')[0])
 ```
 
 ***
+
+
+
+24. sticky-nav
+
+
+
+이번 문제는 sticky navigator 를 만드는 문제였다.
+처음에 내 방식대로 했을 때는 스티키 메뉴에 FOUC가 생겼었다. 이후 수정하긴 했지만, 이 원인은 addEventListener의 콜백함수 내부 조건문에서, nav.offsetTop과 window.scrollY를 비교했는데, 이 경우 scroll이벤트가 발생할때마다 nav.offsetTop을 불러오는 과정에서 비동기적으로 진행되다 보니 그런 것 같다. 먼저 계산해서 결과값을 내버리는 것이다. 따라서 이 경우 const 로 상수 하나를 만들어내어, 그것과 window.scrollY를 비교하니 해결되었다.
+<br />
+<br />
+또한 솔루션에서는 nav태그에 position: fixed를 주고 이것으로 바뀌었을때, body의 padding-top을 nav.offsetHeight 만큼 주는 방식으로 구현했다. 하지만 position: sticky 를 사용하면 이 과정을 거치지 않아도 된다.
+<br />
+<br />
+그리고 자바스크립트로 css를 제어하여 애니메이션을 만들 때, something -> none이나 auto로 바꾸면 애니메이션이 진행되지 않는다. something -> the other(특정한 값) 으로 바꿔줘야 애니메이션이 적용된다.
+
+또한 width를 변화시키는 것도 효과가 없으며, max-width 를 사용해야 한다.
+
+***
+
