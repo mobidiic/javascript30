@@ -464,3 +464,20 @@ msg.voice = voices.find(voice => voice.name === this.value.split(' ')[0])
 
 ***
 
+
+
+25. event-propagation
+
+
+이번 문제는 이벤트의 전파. 캡처링, 버블링에 대해 살펴본 것이다.
+
+
+기존에 이 부분은 공부해서 익혔던 부분이라 다시 되짚는 개념으로 보았지만, 새로 알게 된 것은 addEventListener의 3번째 아규먼트에 capturing 뿐만 아니라 once라는 옵션이 있다는 것이다!!
+
+
+저번에 개인적으로 공부하면서 뭐 만들 때, addEventListener 만들고 removeEventListener로 일일이 지워줬었는데, 이를 미리 알았으면 좋았을 뻔 했다..
+
+
+또 e.stopPropagation 을 주고, capturing: true 로 주었을 때, 가장 밖에 있는 이벤트가 발생하고 캡쳐링이 되지 않는다는 것은 되짚어볼만 했다.
+
+***
