@@ -481,3 +481,23 @@ msg.voice = voices.find(voice => voice.name === this.value.split(' ')[0])
 또 e.stopPropagation 을 주고, capturing: true 로 주었을 때, 가장 밖에 있는 이벤트가 발생하고 캡쳐링이 되지 않는다는 것은 되짚어볼만 했다.
 
 ***
+
+
+
+26. stripe-follow-among-dropdown
+
+
+이번 문제는 저번에 했던 22번 문제의 연장이였다. 22번 문제에서 드롭다운 메뉴를 호버링 했을때 나타나는 애니메이션을 추가하는 것이였다. opacity: 0; display:none; 을 각각 1과 block 인 class 선택자를 만들고, 그것을 mouseenter 이벤트 발생시 classList.add()메소드를 통해 추가하고, mouseleave이벤트 시 classList.remove()메소드를 통해 제거하면 되는 것이였다.
+
+
+다만 주의할 점은, getBoundingClientRect()메소드를 통해 해당 노드의 위치-크기정보를 불러왔을 때, 이것은 해당 노드의 절대값이고, 스타일링 값에 넣을 때에는, 해당 부모 엘리먼트를 기준으로 적용되기 때문에, 부모 엘리먼트의 위치를 빼줘야 제대로된 위치에 들어간다는 점이다.
+
+
+```javascript
+        const coords = {
+            height: dropdownCoords.height,
+            width: dropdownCoords.width,
+            top: dropdownCoords.top - navCoords.top,
+            left: dropdownCoords.left - navCoords.left
+        }
+```
