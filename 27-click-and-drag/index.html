@@ -35,28 +35,52 @@
   </div>
 
 <script>
-    const items = document.querySelectorAll('.item')
     const box = document.querySelector('.items')
     let isMouseDown = false
     let lastX = 0
-
-    function handleMove(e){
-        console.log(this)
-        let currentX = e.pageX
-        let diff = (currentX - lastX)/5
-        box.scrollBy(-diff, 0)
-    }
+    let scrollLeft = 0
 
     box.addEventListener('mousedown', (e)=>{
         isMouseDown = true
-        lastX = e.pageX
+        box.classList.add('active')
+        lastX = e.pageX - box.offsetLeft
+        // 마우스를 처음위치로 되돌렸을때, 스크롤을 다시 돌아오게 하기 위함.
+        scrollLeft = box.scrollLeft 
+        console.log(lastX, scrollLeft)
     })
-    box.addEventListener('mouseup',()=>{
+    box.addEventListener('mouseleave', ()=>{
         isMouseDown = false
+        box.classList.remove('active')
     })
-    box.addEventListener('mousemove',(e)=>{
-        isMouseDown ? handleMove(e) : null
+    box.addEventListener('mouseup', ()=>{
+        isMouseDown = false
+        box.classList.remove('active')
     })
+    box.addEventListener('mousemove', (e)=>{
+        if(!isMouseDown) return
+        e.preventDefault()
+        const x = e.pageX - box.offsetLeft
+        const walk = (x - lastX)*3
+        box.scrollLeft  = scrollLeft - walk
+        console.log(lastX, x)
+    })
+
+    // function handleMove(e){
+    //     let currentX = e.pageX
+    //     let diff = (currentX - lastX)/5
+    //     box.scrollBy(-diff, 0)
+    // }
+
+    // box.addEventListener('mousedown', (e)=>{
+    //     isMouseDown = true
+    //     lastX = e.pageX
+    // })
+    // box.addEventListener('mouseup',()=>{
+    //     isMouseDown = false
+    // })
+    // box.addEventListener('mousemove',(e)=>{
+    //     isMouseDown ? handleMove(e) : null//이거 null -> return
+    // })
 </script>
 
   </body>
