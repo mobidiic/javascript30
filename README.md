@@ -518,3 +518,11 @@ msg.voice = voices.find(voice => voice.name === this.value.split(' ')[0])
 
 
 ***
+
+
+28. video-speed-control
+
+
+
+이번 문제는 비디오 재생속도 바컨트롤로 컨트롤하는 문제였다. 이전에 했던 비디오 컨트롤 문제와 저번에 했던 드래그에 따른 스타일 변화를 합친 문제였다.
+
